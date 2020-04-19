@@ -1,0 +1,23 @@
+4. Cho biết các phương thức vòng đời được gọi khi ứng dụng đang chạy và người sử
+dụng bấm vào nút back sau đó mở lại ứng dụng.
+=>>
++ Bấm nút Back: onPause called, onStop called, onDestroy called.
++ Mở lại ứng dụng: onCreate called, onStart called, onResume called.
+
+5. Cho biết các phương thức vòng đời được gọi khi ứng dụng đang chạy và người sử
+dụng bấm vào nút home và sau đó mở lại ứng dụng.
+=>>
++ Bấm nút Home: onPause called, onStop called.
++ Mở lại ứng dụng: onRestart called, onStart called, onResume called.
+
+6. Nếu cần lưu thông tin của ứng dụng để khôi phục lại trạng thái hiển thị của ứng dụng
+khi chạy lại ứng dụng thì cần phải thực hiện trong phương thức vòng đời nào? vì sao?
+=>>
+- Ta cần thực hiện trong phương thức onPause().
+Vì  onPause():
+• Được gọi khi hệ thống chuẩn bị chuyển sang một activity khác.
+• Phương thức này thường dùng để ghi các thay đổi chưa được lưu, dừng
+hoạt hình và những công việc tốn CPU khác, v.v..
+• Ba phương thức onPause(), onStop(), và onDestroy() dẫn đến trạng thái killable mà onPause() là phương thức duy nhất
+đảm bảo được gọi trước khi tiến trình bị hủy (killed) — onStop() và onDestroy() có thể không được gọi.
+--> Do đó, ta nên dùng onPause() để lưu dữ liệu cần giữ lại (chẳng hạn các sửa đổi của người dùng).
